@@ -1,0 +1,542 @@
+
+Atlas atlas-1a6ghy-shard-0 [primary] myFirstDatabase> show dbs
+
+Atlas atlas-1a6ghy-shard-0 [primary] myFirstDatabase> use db1;
+switched to db db1
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.createCollection("movies");
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "Fight Club",writer :"chuck",year :"1999",actors :['brad pitt','norton']});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b8722cd677cd64c3a9825") }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "Pulp Fiction",writer :"tarantino",year :"1994",actors :['john travolta','uma thruman']});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b87a9cd677cd64c3a9826") }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "Inglorious Basterds",writer :"tarantino",year :"2009",actors :['brad pitt','Diane kruger']});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b887acd677cd64c3a9827") }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "The hobbit:unexpected journey",writer:"j.r.r.Tolkein",year:"2012",franchise:"the hobbit"});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b88fccd677cd64c3a9828") }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "The hobbit:zthe desolation of smaug",writer:"j.r.r.Tolkein",year:"2013",franchise:"the hobbit"});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b891ccd677cd64c3a9829") }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "The hobbit:the battle of five armies",writer:"j.r.r.Tolkein",year:"2012",franchise:"the hobbit"});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b8946cd677cd64c3a982a") }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "The hobbit:the desolation of smaug",writer:"j.r.r.Tolkein",year:"2013",franchise:"the hobbit"});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b8953cd677cd64c3a982b") }
+}
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.remove({'title':'The hobbit:zthe desolation of smaug'});
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.remove({'title':'The hobbit:the battle of five armies'});
+{ acknowledged: true, deletedCount: 1 }
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "The hobbit:the desolation of smaug",writer:"j.r.r.Tolkein",year:"2013",franchise:"the hobbit",synopsis:'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b8a96cd677cd64c3a982c") }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert([{title:"Pee Wee Herman's big adventure"},{title:'avatar'}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("617b8b28cd677cd64c3a982d"),
+    '1': ObjectId("617b8b28cd677cd64c3a982e")
+  }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find();
+[
+  {
+    _id: ObjectId("617b86d9cd677cd64c3a9824"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b8722cd677cd64c3a9825"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b87a9cd677cd64c3a9826"),
+    title: 'Pulp Fiction',
+    writer: 'tarantino',
+    year: '1994',
+    actors: [ 'john travolta', 'uma thruman' ]
+  },
+  {
+    _id: ObjectId("617b887acd677cd64c3a9827"),
+    title: 'Inglorious Basterds',
+    writer: 'tarantino',
+    year: '2009',
+    actors: [ 'brad pitt', 'Diane kruger' ]
+  },
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8953cd677cd64c3a982b"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8a96cd677cd64c3a982c"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'
+  },
+  {
+    _id: ObjectId("617b8b28cd677cd64c3a982d"),
+    title: "Pee Wee Herman's big adventure"
+  },
+  { _id: ObjectId("617b8b28cd677cd64c3a982e"), title: 'avatar' }
+]
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find().pretty();
+[
+  {
+    _id: ObjectId("617b86d9cd677cd64c3a9824"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b8722cd677cd64c3a9825"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b87a9cd677cd64c3a9826"),
+    title: 'Pulp Fiction',
+    writer: 'tarantino',
+    year: '1994',
+    actors: [ 'john travolta', 'uma thruman' ]
+  },
+  {
+    _id: ObjectId("617b887acd677cd64c3a9827"),
+    title: 'Inglorious Basterds',
+    writer: 'tarantino',
+    year: '2009',
+    actors: [ 'brad pitt', 'Diane kruger' ]
+  },
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8953cd677cd64c3a982b"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8a96cd677cd64c3a982c"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'
+  },
+  {
+    _id: ObjectId("617b8b28cd677cd64c3a982d"),
+    title: "Pee Wee Herman's big adventure"
+  },
+  { _id: ObjectId("617b8b28cd677cd64c3a982e"), title: 'avatar' }
+]
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"writer":"tarantino"});
+[
+  {
+    _id: ObjectId("617b87a9cd677cd64c3a9826"),
+    title: 'Pulp Fiction',
+    writer: 'tarantino',
+    year: '1994',
+    actors: [ 'john travolta', 'uma thruman' ]
+  },
+  {
+    _id: ObjectId("617b887acd677cd64c3a9827"),
+    title: 'Inglorious Basterds',
+    writer: 'tarantino',
+    year: '2009',
+    actors: [ 'brad pitt', 'Diane kruger' ]
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"actor":"brad pitt"});
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"actors":"brad pitt"});
+[
+  {
+    _id: ObjectId("617b86d9cd677cd64c3a9824"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b8722cd677cd64c3a9825"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b887acd677cd64c3a9827"),
+    title: 'Inglorious Basterds',
+    writer: 'tarantino',
+    year: '2009',
+    actors: [ 'brad pitt', 'Diane kruger' ]
+  }
+]
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"franchise":"the hobbit"});
+[
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8953cd677cd64c3a982b"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8a96cd677cd64c3a982c"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'
+  }
+]
+
+
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"year":'2013'});
+[
+  {
+    _id: ObjectId("617b8953cd677cd64c3a982b"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8a96cd677cd64c3a982c"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.remove({"year":'2013',"title":"The hobbit:the desolation of smaug"});
+{ acknowledged: true, deletedCount: 2 }
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"year":'2013'});
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.insert({title : "The hobbit:the desolation of smaug",writer:"j.r.r.Tolkein",year:"2013",franchise:"the hobbit",synopsis:'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("617b8f4ccd677cd64c3a982f") }
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1>
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"year":'2013'});
+[
+  {
+    _id: ObjectId("617b8f4ccd677cd64c3a982f"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"year":{$lte:'2000'}});
+[
+  {
+    _id: ObjectId("617b86d9cd677cd64c3a9824"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b8722cd677cd64c3a9825"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b87a9cd677cd64c3a9826"),
+    title: 'Pulp Fiction',
+    writer: 'tarantino',
+    year: '1994',
+    actors: [ 'john travolta', 'uma thruman' ]
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({"year":{$lte:'2000'},"year":{$gte:'2010'}});
+[
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8f4ccd677cd64c3a982f"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find($and: [{"year":{$lte:'2000'}},{"year":{$gte:'2010'}}]);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:19)
+
+> 1 | db.movies.find($and: [{"year":{$lte:'2000'}},{"year":{$gte:'2010'}}]);
+    |                    ^
+  2 |
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({$and: [{"year":{$lte:'2000'}},{"year":{$gte:'2010'}}]});
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({$or:[{"year":{$lte:'2000'}},{"year":{$gte:'2010'}}]});
+[
+  {
+    _id: ObjectId("617b86d9cd677cd64c3a9824"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b8722cd677cd64c3a9825"),
+    title: 'Fight Club',
+    writer: 'chuck',
+    year: '1999',
+    actors: [ 'brad pitt', 'norton' ]
+  },
+  {
+    _id: ObjectId("617b87a9cd677cd64c3a9826"),
+    title: 'Pulp Fiction',
+    writer: 'tarantino',
+    year: '1994',
+    actors: [ 'john travolta', 'uma thruman' ]
+  },
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit'
+  },
+  {
+    _id: ObjectId("617b8f4ccd677cd64c3a982f"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'bilbo and company are forced to engage war against an array of combatants and keep the lonely mointain from falling...'
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.update({"title:The hobbit:unexpected journey"},{$set:{'synopsis':'A reluctant hobbit,Bilbo baggins...'}});
+Uncaught:
+SyntaxError: Unexpected token (1:55)
+
+> 1 | db.movies.update({"title:The hobbit:unexpected journey"},{$set:{'synopsis':'A reluctant hobbit,Bilbo baggins...'}});
+    |                                                        ^
+  2 |
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.update({{"title:The hobbit:unexpected journey"},{$set:{'synopsis':'A reluctant hobbit,Bilbo baggins...'}}});
+Uncaught:
+SyntaxError: Unexpected token (1:18)
+
+> 1 | db.movies.update({{"title:The hobbit:unexpected journey"},{$set:{'synopsis':'A reluctant hobbit,Bilbo baggins...'}}});
+    |                   ^
+  2 |
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.update({{"title":"The hobbit:unexpected journey"},{$set:{'synopsis':'A reluctant hobbit,Bilbo baggins...'}}});
+Uncaught:
+SyntaxError: Unexpected token (1:18)
+
+> 1 | db.movies.update({{"title":"The hobbit:unexpected journey"},{$set:{'synopsis':'A reluctant hobbit,Bilbo baggins...'}}});
+    |                   ^
+  2 |
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.update({"title":"The hobbit:unexpected journey"},{$set:{'synopsis':'A reluctant hobbit,Bilbo baggins...'}});
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({'title':"the hobbit:unexpected"});
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({'title':"The hobbit:unexpected"});
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({'title':"The hobbit:unexpected journey"});
+[
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit',
+    synopsis: 'A reluctant hobbit,Bilbo baggins...'
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.update({"title":"The hobbit:unexpected journey"},{$set:{'synopsis':'A reluctant hobbit,Bilbo baggins...with gandalf'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({'title':"The hobbit:unexpected journey"});
+[
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit',
+    synopsis: 'A reluctant hobbit,Bilbo baggins...with gandalf'
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({$text:{$search:"bilbo"}});
+MongoServerError: text index required for $text query
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.update({"title":"The hobbit:the desolation of smaug"},{$set:{'synopsis':'A reluctant hobbit,dwarf,gold,dragon,Bilbo baggins...with gandalf'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({$text:{$search:"hobbit"}});
+MongoServerError: text index required for $text query
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.createIndex(db.posts.createIndex({post_text:"text"}));
+MongoServerError: Error in specification { key: "post_text_text", name: "0_p_1_o_2_s_3_t_4___5_t_6_e_7_x_8_t_9___10_t_11_e_12_x_13_t" } :: caused by :: The field 'key' must be an object, but got string
+Atlas atlas-1a6ghy-shard-0 [primary] db1> {
+...     "createdCollectionAutomatically" : true,
+...     "numIndexesBefore" : 1,
+...     "numIndexesAfter" : 2,
+...     "ok" : 1
+... }
+... ;
+Uncaught:
+SyntaxError: Missing semicolon. (2:33)
+
+  1 | {
+> 2 |   "createdCollectionAutomatically" : true,
+    |                                   ^
+  3 |   "numIndexesBefore" : 1,
+  4 |   "numIndexesAfter" : 2,
+  5 |   "ok" : 1
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.createIndex(db.posts.createIndex({synopsis:"text"}));
+MongoServerError: Index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "synopsis_text", weights: { synopsis: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 } already exists with different options: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "post_text_text", weights: { post_text: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.createIndex(db.posts.createIndex({name:"text",description:"text"}));
+MongoServerError: Index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "name_text_description_text", weights: { description: 1, name: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 } already exists with different options: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "post_text_text", weights: { post_text: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.createIndex({synopsis:"text"});
+synopsis_text
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.createIndex({synopsis:"text"});
+synopsis_text
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({$text:{search:"hobbit"}});
+MongoServerError: Missing expected field "$search"
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({$text:{$search:"hobbit"}});
+[
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit',
+    synopsis: 'A reluctant hobbit,Bilbo baggins...with gandalf'
+  },
+  {
+    _id: ObjectId("617b8f4ccd677cd64c3a982f"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'A reluctant hobbit,dwarf,gold,dragon,Bilbo baggins...with gandalf'
+  }
+]
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.find({$text:{$search:"hobbit"}});
+[
+  {
+    _id: ObjectId("617b88fccd677cd64c3a9828"),
+    title: 'The hobbit:unexpected journey',
+    writer: 'j.r.r.Tolkein',
+    year: '2012',
+    franchise: 'the hobbit',
+    synopsis: 'A reluctant hobbit,Bilbo baggins...with gandalf'
+  },
+  {
+    _id: ObjectId("617b8f4ccd677cd64c3a982f"),
+    title: 'The hobbit:the desolation of smaug',
+    writer: 'j.r.r.Tolkein',
+    year: '2013',
+    franchise: 'the hobbit',
+    synopsis: 'A reluctant hobbit,dwarf,gold,dragon,Bilbo baggins...with gandalf'
+  }
+]
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.remove("title":"avatar");
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:24)
+
+> 1 | db.movies.remove("title":"avatar");
+    |                         ^
+  2 |
+
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.remove({"title":"avatar"});
+{ acknowledged: true, deletedCount: 1 }
+Atlas atlas-1a6ghy-shard-0 [primary] db1> db.movies.remove({"title":"Pee Wee Herman's Big Adventure"});
+{ acknowledged: true, deletedCount: 0 }
